@@ -17,7 +17,7 @@ const products = [
 },
 
 {
-  name: "Orange",
+  name: "Florida Orange",
   price: 1,
   quantity: 0,
   productId: 2,
@@ -30,6 +30,14 @@ const products = [
   quantity: 0,
   productId: 3,
   image: "images/strawberry.jpg"
+},
+
+{
+  name: "California Orange",
+  price: 2,
+  quantity: 0,
+  productId: 4,
+  image: "images/orange.jpg"
 }
 ];
 /* Images provided in /images folder. All images from Unsplash.com
@@ -101,7 +109,8 @@ function cartTotal() {
   
   let priceTotal = 0;
   
-  for (let x = 0; x < cart.length; item++) {
+  for (
+    let item = 0; item < cart.length; item++) {
     priceTotal += cart[item].quantity * cart[item].price;
     }
   
