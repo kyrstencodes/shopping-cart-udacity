@@ -62,20 +62,36 @@ function addProductToCart(productId) {
 function increaseQuantity(productId) {
 
   const product = products.find((product) => product.productId === productId);
-   ++product.quantity;
+   product.quantity++;
 }
 /* Create a function named decreaseQuantity that takes in the productId as an argument
   - decreaseQuantity should get the correct product based on the productId
   - decreaseQuantity should decrease the quantity of the product
   - if the function decreases the quantity to 0, the product is removed from the cart
 */
+function decreaseQuantity(productId) {
 
+  const product = products.find((product) => product.productId === productId);
+  product.quantity--;
+
+  if (product.quantity === 0) {
+    removeProductFromCart(productId);
+  }
+}
 /* Create a function named removeProductFromCart that takes in the productId as an argument
   - removeProductFromCart should get the correct product based on the productId
   - removeProductFromCart should update the product quantity to 0
   - removeProductFromCart should remove the product from the cart
 */
+function removeProductFromCart(productId) {
 
+  const list = cart.findIndex((product) => product.productId === productId);
+  
+  if (list !== -1) {
+    cart[list].quantity = 0;
+    cart.splice(list, 1);
+}
+}
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total cost of all products
   - cartTotal should return the total cost of the products in the cart
@@ -83,23 +99,31 @@ function increaseQuantity(productId) {
 */
 function cartTotal() {
   
-  let totalPrice = 0;
+  let priceTotal = 0;
   
-  for (let i = 0; i < cart.length; i++) {
-    totalPrice += cart[i].quantity * cart[i].price;
+  for (let x = 0; x < cart.length; item++) {
+    priceTotal += cart[item].quantity * cart[item].price;
     }
   
-  return totalPrice;
+  return priceTotal;
   }
 /* Create a function called emptyCart that empties the products from the cart */
-
+function emptyCart() { 
+  cart = [];
+  }
 /* Create a function named pay that takes in an amount as an argument
   - amount is the money paid by customer
   - pay will return a negative number if there is a remaining balance
   - pay will return a positive number if money should be returned to customer
   Hint: cartTotal function gives us cost of all the products in the cart  
 */
+let totalRec = 0;
 
+function pay(amount) {
+ totalRec += amount;
+ const balance = totalRec - cartTotal();
+ return balance;
+}
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
 
